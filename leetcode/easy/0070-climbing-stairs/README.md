@@ -42,9 +42,9 @@ Explanation: There are three ways to climb to the top.
 ## Solution
 
 **Language:** C++  
-**Runtime:** 1 ms (beats 10.36%)  
-**Memory:** 8.5 MB (beats 32.69%)  
-**Submitted:** 2026-11-05T15:07:52.791Z  
+**Runtime:** 0 ms (beats 100.00%)  
+**Memory:** 7.9 MB (beats 70.51%)  
+**Submitted:** 2026-11-05T15:10:17.506Z  
 
 ```cpp
 class Solution {
@@ -62,17 +62,24 @@ public:
 
     int climbStairs(int n) {
 
-        vector<int> dp(n + 1, -1);
+        // vector<int> dp(n + 1, -1);
 
-        dp[0] = 1;
-        dp[1] = 1;
+        // dp[0] = 1;
+        // dp[1] = 1;
 
+        if (n == 1 || n == 0)
+            return 1;
+
+        int p1 = 1, p2 = 1;
+        int curr = 0;
         for (int i = 2; i <= n; i++) {
-            dp[i] = dp[i - 1] + dp[i - 2];
+            curr = p1 + p2;
+            p1 = p2;
+            p2 = curr;
         }
 
         // return fun(n, dp);
-        return dp[n];
+        return curr;
     }
 };
 ```
