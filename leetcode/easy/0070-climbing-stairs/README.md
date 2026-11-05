@@ -42,20 +42,29 @@ Explanation: There are three ways to climb to the top.
 ## Solution
 
 **Language:** C++  
-**Runtime:** 0 ms  
-**Memory:** 7.7 MB  
-**Submitted:** 2026-11-05T14:58:42.462Z  
+**Runtime:** 0 ms (beats 100.00%)  
+**Memory:** 8.5 MB (beats 45.31%)  
+**Submitted:** 2026-11-05T15:03:37.341Z  
 
 ```cpp
 class Solution {
 public:
+    int fun(int n, vector<int>& dp) {
+
+        if (n == 1 || n == 0)
+            return 1;
+
+        if (dp[n] != -1)
+            return dp[n];
+
+        return dp[n] = fun(n - 1, dp) + fun(n - 2, dp);
+    }
+
     int climbStairs(int n) {
-        if(n<=2)
-        return n;
 
+        vector<int> dp(n + 1, -1);
 
-      return climbStairs(n-1)+climbStairs(n-2);
-
+        return fun(n, dp);
     }
 };
 ```
