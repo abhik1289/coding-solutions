@@ -42,9 +42,9 @@ Explanation: There are three ways to climb to the top.
 ## Solution
 
 **Language:** C++  
-**Runtime:** 0 ms (beats 100.00%)  
-**Memory:** 8.5 MB (beats 45.31%)  
-**Submitted:** 2026-11-05T15:03:37.341Z  
+**Runtime:** 1 ms (beats 10.36%)  
+**Memory:** 8.5 MB (beats 32.69%)  
+**Submitted:** 2026-11-05T15:07:52.791Z  
 
 ```cpp
 class Solution {
@@ -64,7 +64,15 @@ public:
 
         vector<int> dp(n + 1, -1);
 
-        return fun(n, dp);
+        dp[0] = 1;
+        dp[1] = 1;
+
+        for (int i = 2; i <= n; i++) {
+            dp[i] = dp[i - 1] + dp[i - 2];
+        }
+
+        // return fun(n, dp);
+        return dp[n];
     }
 };
 ```
