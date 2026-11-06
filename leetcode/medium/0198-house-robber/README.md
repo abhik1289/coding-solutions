@@ -42,25 +42,24 @@ Total amount you can rob = 2 + 9 + 1 = 12.
 **Language:** C++  
 **Runtime:** 0 ms (beats 100.00%)  
 **Memory:** 10.6 MB (beats 58.09%)  
-**Submitted:** 2026-11-06T06:25:56.910Z  
+**Submitted:** 2026-11-06T06:29:01.388Z  
 
 ```cpp
 class Solution {
 public:
     int fun(vector<int>& nums, vector<int>& dp, int idx) {
 
-        if (idx >= nums.size())
+        if (idx < 0 )
             return 0;
 
         if (dp[idx] != -1)
             return dp[idx];
 
-        int take = nums[idx] + fun(nums,dp, idx + 2);
-        int notTake = fun(nums,dp, idx + 1);
+        int take = nums[idx] + fun(nums,dp, idx - 2);
+        int notTake = fun(nums,dp, idx - 1);
 
-        // cout << idx << take << endl;
-        // cout << idx << notTake << endl;
         return dp[idx] = max(take, notTake);
+
     }
 
     int rob(vector<int>& nums) {
@@ -69,7 +68,7 @@ public:
 
         vector<int> dp(n + 1, -1);
 
-        return fun(nums, dp, 0);
+        return fun(nums, dp, n-1);
     }
 };
 ```
