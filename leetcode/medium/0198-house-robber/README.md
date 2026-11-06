@@ -40,9 +40,9 @@ Total amount you can rob = 2 + 9 + 1 = 12.
 ## Solution
 
 **Language:** C++  
-**Runtime:** 0 ms  
-**Memory:** 7.9 MB  
-**Submitted:** 2026-11-06T06:45:01.729Z  
+**Runtime:** 0 ms (beats 100.00%)  
+**Memory:** 10.7 MB (beats 39.23%)  
+**Submitted:** 2026-11-06T06:47:17.532Z  
 
 ```cpp
 class Solution {
@@ -73,7 +73,7 @@ public:
         if (n == 2)
             return max(nums[0], nums[1]);
 
-        dp[0] = nums[0], dp[1] = nums[1];
+        dp[0] = nums[0], dp[1] = max(nums[1],nums[0]);
 
         for (int i = 2; i < n; ++i) {
             int take = nums[i] + dp[i - 2];
