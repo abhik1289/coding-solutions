@@ -18,7 +18,7 @@ public:
 
         int n = nums.size();
 
-        vector<int> dp(n + 1, -1);
+        // vector<int> dp(n + 1, -1);
 
         if (n == 1)
             return nums[0];
@@ -26,16 +26,19 @@ public:
         if (n == 2)
             return max(nums[0], nums[1]);
 
-        dp[0] = nums[0], dp[1] = max(nums[1],nums[0]);
+        int prev = nums[0], curr = max(nums[1],nums[0]);
 
         for (int i = 2; i < n; ++i) {
-            int take = nums[i] + dp[i - 2];
-            int notTake = dp[i - 1];
-            dp[i] = max(take, notTake);
+            int take = nums[i] + prev;
+            int notTake = curr;
+
+           int ans = max(take, notTake);
+           prev = curr;
+           curr = ans;
         }
 
         // return fun(nums, dp, n-1);
 
-        return dp[n - 1];
+        return curr;
     }
 };
